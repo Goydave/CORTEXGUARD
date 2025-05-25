@@ -1,28 +1,21 @@
+import os
 from flask import Blueprint, render_template, request
 import joblib
 import pandas as pd
 import re
 from urllib.parse import urlparse
+from src.predict.predict_url import extract_features
 
 main = Blueprint("main", __name__)
 
+# ─── Determine project root & model path ─────────────────────────────────────
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))    # .../CORTEXGUARD/app
+PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.pardir))  # .../CORTEXGUARD
+MODEL_PATH = os.path.join(PROJECT_ROOT, "models", "phishing_model.pkl")
+
 # Load the trained model
-model = joblib.load("models/phishing_model.pkl")
-
-# Feature extraction
-def extract_features(url):
-    features = {}
-    features["url_length"] = len(url)
-    features["num_dots"] = url.count(".")
-    features["has_ip"] = 1 if re.match(r"https?://\d+\.\d+\.\d+\.\d+", url) else 0
-    features["suspicious_words"] = 1 if any(word in url.lower() for word in ["secure", "login", "verify", "account", "update"]) else 0
-    features["https"] = 1 if urlparse(url).scheme == "https" else 0
-
-    # 🔥 FORCE column order exactly like the model expects
-    df = pd.DataFrame([features])
-    df = df[["url_length", "num_dots", "has_ip", "suspicious_words", "https"]]
-    return df
-
+with open("models/phishing_model.pkl", "rb") as f:
+    model = joblib.load(f)
 
 @main.route("/", methods=["GET"])
 def index():
@@ -32,6 +25,9 @@ def index():
 def predict():
     url = request.form.get("url")
     features = extract_features(url)
+    if "https" in features.columns:
+        features["https"] = 0
+    print("Features for prediction (forced https=0):", features)
     prediction = model.predict(features)[0]
     label = "Phishing 🚨" if prediction == 1 else "Legit ✅"
     return render_template("result.html", url=url, prediction=label)
