@@ -1,13 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>CortexGuard URL Scanner</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CORTEXGUARD Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
 </head>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
 <body>
-    <h1>🔐 CortexGuard</h1>
-    <form action="/predict" method="post">
-        <input type="text" name="url" placeholder="Enter a URL" required>
-        <button type="submit">Scan</button>
-    </form>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Logo" />
+      <span><span class="glow">CORTEX</span>GUARD</span>
+    </div>
+    <!-- ✅ Hamburger icon -->
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#">Threats</a></li>
+      <li><a href="#">Analysis</a></li>
+      <li><a href="#">Reports</a></li>
+      <li><a href="#">Settings</a></li>
+      <li><a href="#" class="notif">🔔 <span class="badge">3</span></a></li>
+      <li><a href="#" class="user">👤 Admin</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <section class="status">
+      <h1>Security Dashboard</h1>
+      <p>System Status: <span class="online">Protected</span></p>
+      <div class="indicators">
+        <span class="dot green"></span> System Online
+        <span class="dot orange"></span> 3 Alerts
+      </div>
+    </section>
+
+    <section class="cards">
+      <div class="card">
+        <h2>Threat Level</h2>
+        <p class="value green">Low</p>
+        <div class="bar"><div class="progress" style="width: 15%"></div></div>
+        <p class="desc">15% of threshold</p>
+      </div>
+      <div class="card">
+        <h2>Threats Blocked</h2>
+        <p class="value green">1,284</p>
+        <p class="desc">+24% from last week</p>
+      </div>
+      <div class="card">
+        <h2>Active Scans</h2>
+        <p class="value blue">3</p>
+        <p class="desc">2 network, 1 endpoint</p>
+      </div>
+      <div class="card">
+        <h2>System Health</h2>
+        <p class="value green">98%</p>
+        <div class="bar"><div class="progress" style="width: 98%"></div></div>
+        <p class="desc">All systems operational</p>
+      </div>
+    </section>
+
+    <section class="threat-section">
+      <div class="header">
+        <h2>Threat Detection</h2>
+        <div class="filters">
+          <button>Daily</button>
+          <button class="active">Weekly</button>
+          <button>Monthly</button>
+        </div>
+      </div>
+      <div class="threat-detection"></div>
+    </section>
+
+    <section class="radar-section">
+      <h2>Security Radar</h2>
+      <div class="radar">
+        <img src="{{ url_for('static', filename='image/radar.svg') }}" alt="Radar" />
+        <ul class="legend">
+          <li><span class="dot green"></span> Network Perimeter - <span class="status">Secure</span></li>
+          <li><span class="dot orange"></span> Endpoint Security - <span class="status alert">Alert</span></li>
+          <li><span class="dot green"></span> Cloud Services - <span class="status">Secure</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made by David Madol • &copy; 2025 CortexGuard</p>
+  </footer>
 </body>
 </html>

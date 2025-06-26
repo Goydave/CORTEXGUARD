@@ -1,33 +1,43 @@
 import pandas as pd
+import re
+import math
 from urllib.parse import urlparse
 
-# Load the combined dataset
-df = pd.read_csv("processed/combined_dataset.csv")
+# Load dataset
+df = pd.read_csv("src/data/processed/combined_dataset.csv")
 
-# Feature 1: URL Length
-df['url_length'] = df['url'].apply(len)
+# Suspicious words list
+SUSPICIOUS_WORDS = ['login', 'verify', 'update', 'secure', 'account', 'webscr', 'bank', 'signin']
 
-# Feature 2: Number of dots in URL
-df['num_dots'] = df['url'].apply(lambda x: x.count('.'))
+# Shortened domains
+SHORTENERS = ["bit.ly", "tinyurl.com", "goo.gl", "t.co", "ow.ly", "is.gd", "buff.ly"]
 
-# Feature 3: Has IP Address (True if domain is an IP)
-import re
-def has_ip(url):
-    ip_pattern = r'(\d{1,3}\.){3}\d{1,3}'
-    return int(bool(re.search(ip_pattern, urlparse(url).netloc)))
-df['has_ip'] = df['url'].apply(has_ip)
+# Shannon entropy function
+def calculate_entropy(string):
+    prob = [float(string.count(c)) / len(string) for c in dict.fromkeys(string)]
+    return -sum([p * math.log(p) / math.log(2.0) for p in prob]) if len(string) > 0 else 0
 
-# Feature 4: Count of suspicious words
-suspicious_words = ['login', 'verify', 'update', 'secure', 'account', 'webscr']
-def count_suspicious_words(url):
-    return sum(word in url.lower() for word in suspicious_words)
-df['suspicious_words'] = df['url'].apply(count_suspicious_words)
+def extract_features(url):
+    parsed = urlparse(url)
+    domain = parsed.netloc
+    path = parsed.path + parsed.query
 
-# Feature 5: Use of HTTPS (0 or 1)
-df['https'] = df['url'].apply(lambda x: int(urlparse(x).scheme == 'https'))
+    return {
+        "url_length": len(url),
+        "num_dots": url.count('.'),
+        "has_ip": int(bool(re.match(r"(\d{1,3}\.){3}\d{1,3}", domain))),
+        "https": int(parsed.scheme == "https"),
+        "suspicious_words": sum(word in url.lower() for word in SUSPICIOUS_WORDS),
+        "num_special_chars": sum(url.count(c) for c in ['@', '%', '=', '-', '_', '!', '?', '&']),
+        "is_shortened": int(any(short in domain for short in SHORTENERS)),
+        "domain_entropy": calculate_entropy(domain)
+    }
 
-# Save extracted features + label only
-features_df = df[['url_length', 'num_dots', 'has_ip', 'suspicious_words', 'https', 'label']]
-features_df.to_csv("processed/features.csv", index=False)
+# Extract features
+features = df["url"].apply(lambda x: extract_features(x))
+features_df = pd.DataFrame(features.tolist())
+features_df["label"] = df["label"]
 
-print(f"✅ Feature extraction complete. Saved to processed/features.csv with {len(features_df)} rows.")
+# Save to file
+features_df.to_csv("src/data/processed/features.csv", index=False)
+print(f"✅ Enhanced features saved to src/data/processed/features.csv with {len(features_df)} rows.")

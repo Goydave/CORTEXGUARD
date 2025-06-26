@@ -1,0 +1,320 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0e0e11;
+  color: #ffffff;
+  line-height: 1.6;
+  padding-bottom: 60px;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #0c0c0f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #1f1f1f;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  color: #0fffb3;
+  gap: 10px;
+}
+.logo img {
+  height: 32px;
+}
+.logo .glow {
+  color: #00ffae;
+  text-shadow: 0 0 10px #00ffae;
+}
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+  align-items: center;
+}
+.nav-links li a {
+  color: #b0b0b0;
+  transition: color 0.3s ease;
+}
+.nav-links li a:hover {
+  color: #00ffae;
+}
+.nav-links .notif .badge {
+  background-color: #ff3d3d;
+  border-radius: 50%;
+  padding: 0.2em 0.5em;
+  font-size: 0.7rem;
+  margin-left: 3px;
+}
+.nav-links .user {
+  color: #e0e0e0;
+}
+
+/* Container */
+.container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* System Status */
+.status h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.2rem;
+}
+.status p {
+  color: #999;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+.status .online {
+  color: #00ffae;
+  font-weight: 600;
+}
+.indicators {
+  font-size: 0.85rem;
+  color: #888;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+.dot.green {
+  background-color: #00ffae;
+}
+.dot.orange {
+  background-color: #ffb300;
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.card {
+  background-color: #15151a;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #1f1f24;
+  box-shadow: 0 0 12px rgba(0, 255, 174, 0.04);
+}
+.card h2 {
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+}
+.card .value {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+.card .value.green {
+  color: #00ffae;
+}
+.card .value.blue {
+  color: #62d2ff;
+}
+.card .desc {
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-top: 0.4rem;
+}
+.bar {
+  width: 100%;
+  height: 6px;
+  background-color: #2e2e36;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+}
+.progress {
+  height: 100%;
+  background-color: #00ffae;
+  border-radius: 4px;
+}
+
+/* Threat Section */
+.threat-section {
+  background-color: #15151a;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border-radius: 12px;
+  border: 1px solid #1f1f24;
+}
+.threat-section .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.threat-section h2 {
+  font-size: 1.2rem;
+}
+.filters {
+  display: flex;
+  gap: 0.5rem;
+}
+.filters button {
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #2a2a30;
+  color: #ccc;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.filters button.active,
+.filters button:hover {
+  background-color: #00ffae;
+  color: #0e0e11;
+}
+
+/* Radar Section */
+.radar-section {
+  background-color: #15151a;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border-radius: 12px;
+  border: 1px solid #1f1f24;
+}
+.radar-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+.radar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.radar img {
+  width: 220px;
+  max-width: 100%;
+}
+.radar .legend {
+  font-size: 0.9rem;
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.radar .legend li {
+  color: #aaa;
+}
+.legend .status {
+  font-weight: 600;
+  color: #00ffae;
+}
+.legend .status.alert {
+  color: #ffb300;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 4rem;
+}
+
+/* === SMOOTH SCROLLING & SLEEK EXPERIENCE === */
+
+/* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar but keep scroll functionality */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--neon-blue);
+  border-radius: 10px;
+}
+
+/* In case scrolling is needed on small screens */
+.container {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Boost tap experience on mobile */
+button,
+input,
+a {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  height: 3px;
+  width: 25px;
+  background-color: #00ffae;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color #00ffae(210, 40, 40);
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    text-align: center;
+    padding: 12px;
+  }
+}
+
