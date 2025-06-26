@@ -31,3 +31,7 @@ def predict():
     prediction = model.predict(features)[0]
     label = "Phishing 🚨" if prediction == 1 else "Legit ✅"
     return render_template("result.html", url=url, prediction=label)
+
+@main.route("/dashboard", methods=["GET"])
+def dashboard():
+    return render_template("dashboard.html")

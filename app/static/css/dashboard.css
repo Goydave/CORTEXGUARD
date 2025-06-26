@@ -1,0 +1,179 @@
+
+/* ========== GLOBAL RESET ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0e0e11;;
+  color: #e6edf3;
+  line-height: 1.6;
+  overflow-x: hidden;
+  padding-bottom: 40px;
+}
+h3 {
+  font-family: 'Orbitron', sans-serif;
+  color: #00ffae;
+  margin-bottom: 10px;
+}
+
+/* ========== TOP NAVBAR ========== */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0e0e11;;
+  padding: 10px 30px;
+  border-bottom: 1px solid #00ffae;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.brand span {
+  color: #fff;
+}
+.brand .glow {
+  color: #00ffae;
+  text-shadow: 0 0 5px #00ffae, 0 0 10px #00ffae;
+}
+.dashboard-logo {
+  width: 40px;
+  height: 40px;
+}
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.badge {
+  background-color: #f85149;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+/* ========== GRID CONTAINER ========== */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+/* ========== WIDGET BASE ========== */
+.widget {
+  background-color: #0e0e11;;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 8px #00ffae(88, 166, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+.widget:hover {
+  transform: translateY(-5px);
+}
+
+/* ========== SPECIAL WIDGETS ========== */
+.feed .ticker,
+.timeline #timeline-chart,
+.vectors #vectors-chart,
+.behavior #behavior-chart,
+.radar #radar-widget {
+  background-color: #0e0e11;;
+  border: 1px dashed #00ffae;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8b949e;
+}
+
+input[type="range"],
+input[type="date"] {
+  width: 100%;
+  margin-top: 10px;
+  background: #0e0e11;;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 6px;
+}
+
+/* ========== TABLES ========== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+th, td {
+  border: 1px solid #30363d;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #0e0e11;;
+  color: #58a6ff;
+}
+
+/* ========== BUTTONS ========== */
+button {
+  background-color: #238636;
+  border: none;
+  padding: 8px 14px;
+  color: white;
+  margin: 6px 4px 0 0;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #2ea043;
+}
+
+/* ========== METRICS & INSIGHT PANEL ========== */
+.metrics div {
+  margin-top: 5px;
+}
+#insight-text {
+  background-color: #0e0e11;;
+  border: 1px solid #30363d;
+  padding: 10px;
+  border-radius: 6px;
+  font-style: italic;
+  color: #8b949e;
+}
+
+/* ========== TERMINAL LOG ========== */
+#log-stream {
+  background-color: #0e0e11;;
+  border: 1px solid #30363d;
+  padding: 10px;
+  font-family: monospace;
+  height: 140px;
+  overflow-y: auto;
+  color: #58a6ff;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .top-actions {
+    margin-top: 10px;
+  }
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CortexGuard | Ultimate Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script defer src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</head>
+<body>
+  <!-- Top Navbar -->
+  <nav class="topbar">
+    <div class="brand">
+      <img src="{{ url_for('static', filename='image/logo.png') }}" alt="CortexGuard Logo" class="dashboard-logo" />
+      <span>CORTEX<span class="glow">GUARD</span></span>
+    </div>
+    <div class="top-actions">
+      <ul class="nav-links">
+    <li><a href="{{ url_for('main.index') }}">← Back to Home</a></li>
+  </ul>
+    </div>
+  </nav>
+
+  <!-- Main Grid Container -->
+  <div class="grid-container">
+    <!-- 1. Real-Time Threat Feed -->
+    <section id="feed" class="widget feed">
+      <h3>Real-Time Threat Feed</h3>
+      <div class="ticker">Loading live feed…</div>
+    </section>
+
+    <!-- 2. Global Threat Map -->
+    <section id="map" class="widget map">
+      <h3>Global Threat Map</h3>
+      <div id="world-map">[map]</div>
+    </section>
+
+    <!-- 3. Threat Timeline Slider -->
+    <section id="timeline" class="widget timeline">
+      <h3>Threat Timeline</h3>
+      <div id="timeline-chart">[chart]</div>
+      <input type="range" id="time-slider" min="0" max="100" value="50">
+    </section>
+
+    <!-- 4. Top Attack Vectors -->
+    <section id="vectors" class="widget vectors">
+      <h3>Top Attack Vectors</h3>
+      <div id="vectors-chart">[pie chart]</div>
+    </section>
+
+    <!-- 5. Phishing Source Domains -->
+    <section id="domains" class="widget domains">
+      <h3>Phishing Source Domains</h3>
+      <table id="domain-table">
+        <thead><tr><th>Domain</th><th>Count</th></tr></thead>
+        <tbody><tr><td>…</td><td>…</td></tr></tbody>
+      </table>
+    </section>
+
+    <!-- 6. System Health & Performance -->
+    <section id="health" class="widget health">
+      <h3>System Health</h3>
+      <div id="health-gauge">[gauge]</div>
+      <div class="metrics">
+        <div>CPU: <span id="cpu">…</span>%</div>
+        <div>RAM: <span id="ram">…</span>%</div>
+        <div>Net: <span id="net">…</span>%</div>
+      </div>
+    </section>
+
+    <!-- 7. User Action Panel -->
+    <section id="actions" class="widget actions">
+      <h3>User Actions</h3>
+      <button>Run Full System Scan</button>
+      <button>Block IP</button>
+      <button>Quarantine Domain</button>
+    </section>
+
+    <!-- 8. Alert Center -->
+    <section id="alerts" class="widget alerts">
+      <h3>Alert Center</h3>
+      <ul id="alert-list">
+        <li>[Alert message…] <button>Acknowledge</button></li>
+      </ul>
+    </section>
+
+    <!-- 9. Custom Rules & Signatures -->
+    <section id="rules" class="widget rules">
+      <h3>Custom Rules & Signatures</h3>
+      <table id="rules-table">
+        <thead><tr><th>Rule</th><th>Status</th><th>Toggle</th></tr></thead>
+        <tbody><tr><td>…</td><td>On</td><td><input type="checkbox" checked></td></tr></tbody>
+      </table>
+      <button>Add New Rule</button>
+    </section>
+
+    <!-- 10. Historical Reports Download -->
+    <section id="reports" class="widget reports">
+      <h3>Download Reports</h3>
+      <label>Date Range:</label>
+      <input type="date"> to <input type="date">
+      <button>Download CSV</button>
+      <button>Download PDF</button>
+    </section>
+
+    <!-- 11. AI Insights Panel -->
+    <section id="insights" class="widget insights">
+      <h3>AI Insights</h3>
+      <p id="insight-text">Generating AI summary…</p>
+    </section>
+
+    <!-- 12. User Behavior Analytics -->
+    <section id="behavior" class="widget behavior">
+      <h3>User Behavior Analytics</h3>
+      <div id="behavior-chart">[bar chart]</div>
+    </section>
+
+    <!-- 13. Terminal Widget -->
+    <section id="terminal" class="widget terminal">
+      <h3>Security Logs</h3>
+      <pre id="log-stream">[log lines…]</pre>
+    </section>
+
+    <!-- 14. Security Radar Animation -->
+    <section id="radar" class="widget radar">
+      <h3>Security Radar</h3>
+      <div id="radar-widget">[animated radar]</div>
+    </section>
+
+    <!-- 15. Scan History -->
+    <section id="history" class="widget history">
+      <h3>Scan History</h3>
+      <table id="history-table">
+        <thead><tr><th>Time</th><th>URL</th><th>Result</th></tr></thead>
+        <tbody><tr><td>…</td><td>…</td><td>…</td></tr></tbody>
+      </table>
+    </section>
+  </div>
+</body>
+</html>

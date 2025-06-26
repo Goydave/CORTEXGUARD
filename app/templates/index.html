@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='js/main.js') }}">
 
 </head>
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 <body>
   <nav class="navbar">
@@ -23,15 +23,16 @@
       <span></span>
       <span></span>
     </div>
-    <ul class="nav-links">
-      <li><a href="#">Dashboard</a></li>
-      <li><a href="#">Threats</a></li>
-      <li><a href="#">Analysis</a></li>
-      <li><a href="#">Reports</a></li>
-      <li><a href="#">Settings</a></li>
-      <li><a href="#" class="notif">🔔 <span class="badge">3</span></a></li>
-      <li><a href="#" class="user">👤 Admin</a></li>
-    </ul>
+    <ul class="nav-links" id="nav-links">
+    <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
+    <li><a href="#threats">Threats</a></li>
+    <li><a href="#analysis">Analysis</a></li>
+    <li><a href="#reports">Reports</a></li>
+    <li><a href="#settings">Settings</a></li>
+    <li><a href="#" class="notif">🔔 <span class="badge">3</span></a></li>
+    <li><a href="#" class="user">👤 Admin</a></li>
+  </ul>
+
   </nav>
 
   <main class="container">
@@ -97,5 +98,6 @@
   <footer>
     <p>Made by David Madol • &copy; 2025 CortexGuard</p>
   </footer>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
